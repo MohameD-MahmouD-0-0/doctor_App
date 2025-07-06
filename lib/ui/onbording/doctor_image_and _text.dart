@@ -30,5 +30,6 @@ class DocImageAndText extends StatelessWidget {
         )
       ],
     );
+
   }
 }

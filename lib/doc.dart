@@ -1,4 +1,4 @@
-import 'package:doctor/ui/LoginScreen.dart';
+import 'package:doctor/ui/Login/LoginScreen.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:doctor/ui/onbording/onbording_screen.dart';
 import 'package:flutter/material.dart';

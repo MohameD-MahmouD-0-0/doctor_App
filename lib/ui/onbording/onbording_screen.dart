@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../Login/LoginScreen.dart';
 import '../app_color.dart';
 import 'doc_logo_and_name.dart';
 import 'doctor_image_and _text.dart';
@@ -34,7 +35,9 @@ class OnBrdingCreen extends StatelessWidget {
                     SizedBox(
                       width: 300.w,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(Loginscreen.routeName);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.mainblue,
                           foregroundColor: Colors.white,
@@ -45,7 +48,6 @@ class OnBrdingCreen extends StatelessWidget {
                         ),
                         child: Text(
                           'Get Started',
-
                           style: TextStyle(fontSize: 16.sp),
                         ),
                       ),

@@ -1,29 +1,28 @@
+import 'package:doctor/ui/Login/cuibt/login_view_model.dart';
 import 'package:doctor/ui/Login/terms_and_conditins_text.dart';
 import 'package:doctor/ui/app_color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../di.dart';
 import 'already_have_an_account.dart';
 import 'custom_text_form_filed.dart';
 
 class Loginscreen extends StatefulWidget {
   static const String routeName = 'LoginScreen';
 
-  const Loginscreen({super.key});
+  Loginscreen({super.key});
 
   @override
   State<Loginscreen> createState() => _LoginscreenState();
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-  bool isObsucred = true;
-  TextEditingController EmailController = TextEditingController();
-  TextEditingController PasswordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    LoginViewModel viewModel = LoginViewModel(
+      autheReposatioryContract: injectReposatiortContract(),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,31 +50,31 @@ class _LoginscreenState extends State<Loginscreen> {
                 ),
                 SizedBox(height: 20.h),
                 Form(
-                  key: formKey,
+                  key: viewModel.formKey,
                   child: Column(
                     children: [
                       CustomTextFormFiled(
-                        controller: EmailController,
+                        controller: viewModel.EmailController,
                         hintText: 'Email',
                         SuffixIcon: Icon(Icons.email),
                       ),
                       SizedBox(height: 20.h),
                       CustomTextFormFiled(
-                        controller: PasswordController,
+                        controller: viewModel.PasswordController,
                         hintText: 'Password',
                         SuffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
-                              isObsucred = !isObsucred;
+                              viewModel.isObsucred = viewModel.isObsucred;
                             });
                           },
                           child: Icon(
-                            isObsucred
+                            viewModel.isObsucred
                                 ? Icons.visibility_off
                                 : Icons.visibility,
                           ),
                         ),
-                        isObsucre: isObsucred,
+                        isObsucre: viewModel.isObsucred,
                       ),
                       SizedBox(height: 25.h),
                       Align(
@@ -116,7 +115,7 @@ class _LoginscreenState extends State<Loginscreen> {
                 SizedBox(height: 30.h),
                 TermsAndConditinsText(),
                 SizedBox(height: 50.h),
-                AlreadyHaveAccount()
+                AlreadyHaveAccount(),
               ],
             ),
           ),

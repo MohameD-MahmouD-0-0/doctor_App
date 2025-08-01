@@ -13,29 +13,30 @@ class ApiManager {
     _instance??=ApiManager._();
     return _instance!;
   }
-  Future<Either<Failer, LoginResponse>> Login(
-    String Email,
-    String Password,
-  ) async {
+  Future<Either<Failer, LoginResponse>> Login(String email, String password) async {
     try {
-      var url = Uri.https(ApiConstant.ApiBaseUrl, ApiConstant.LoginUrl);
-      var requestBody = LoginRequest(email: Email, password: Password);
-      var request = http.MultipartRequest('Post', url);
-      request.fields.addAll(  requestBody.toJson().map((key, value) => MapEntry(key, value.toString())),
+      var url = Uri.https(ApiConstant.ApiBaseUrl,ApiConstant.LoginUrl);
+      var request = http.MultipartRequest('POST', url);
+      var loginRequest = LoginRequest(email: email, password: password);
+      request.fields.addAll(
+          loginRequest.toJson().map((key, value) => MapEntry(key, value.toString()))
       );
+
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
-      var responseString = response.body.toString();
-      var json = jsonDecode(responseString);
-      var loginResponse = LoginResponse.fromJson(json);
+      print(request.fields);
+      var json = jsonDecode(response.body);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
+        var loginResponse = LoginResponse.fromJson(json);
         return Right(loginResponse);
       } else {
-        return Left(Failer(errorMessage: loginResponse.message!));
+        String errorMessage = json['message'] ?? 'Login failed';
+        return Left(Failer(errorMessage: errorMessage));
       }
     } catch (e) {
       return Left(Failer(errorMessage: e.toString()));
     }
   }
+
 }

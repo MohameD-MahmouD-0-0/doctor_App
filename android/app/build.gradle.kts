@@ -29,18 +29,40 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+    android {
+        flavorDimensions += "default"
+        productFlavors {
+            create("Development") {
+                dimension = "default"
+                resValue(
+                    type = "string",
+                    name = "app_name",
+                    value = "Doctor Development"
+                )
+                applicationIdSuffix = ".dev"
+            }
+            create("Production") {
+                dimension = "default"
+                resValue(
+                    type = "string",
+                    name = "app_name",
+                    value = "Doctor Production"
+                )
+//                applicationIdSuffix = ".production"
+            }
         }
+        buildTypes {
+            release {
+                // TODO: Add your own signing config for the release build.
+                // Signing with the debug keys for now, so `flutter run --release` works.
+                signingConfig = signingConfigs.getByName("debug")
+            }
+        }
+        ndkVersion = "29.0.13113456"
+
     }
-    ndkVersion = "29.0.13113456"
 
-}
-
-flutter {
-    source = "../.."
+    flutter {
+        source = "../.."
+    }
 }

@@ -1,0 +1,41 @@
+default_platform(:android)
+
+platform :android do
+  desc "Lane for Android Firebase App Distribution"
+  lane :firebase_distribution do
+        sh "flutter clean"
+        sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+       firebase_app_distribution(
+          app: "1:712619438378:android:4c6ea73f1c9c86e3df6e53",
+          firebase_cli_token: "1//03o_zjIGzHdiYCgYIARAAGAMSNwF-L9IrlFHc9elWXcrOKFkGg8m-eJ3hNv5So3MVpeZ4zduqI-W5PQaExC9PSCvHWuJMzPq6Kzg",
+          android_artifact_path: "D:\\flutterprojects\\build\\app\\outputs\\flutter-apk\\app-production-release.apk",
+          testers: "mahamedmahmoud3880@gmail.com",
+          release_notes: "First Fastlane Firebase Distribution For Project",
+        )
+  end
+end
+
+# default_platform(:android)
+#
+# platform :android do
+#   desc "Build and distribute Production APK to Firebase"
+#   lane :firebase_distribution do
+#     gradle(
+#       task: "assemble",
+#       build_type: "Release",
+#       flavor: "Production",
+#       properties: {
+#         "target" => "lib/main_production.dart"
+#       }
+#     )
+#
+#     apk_path = "D:\\flutterprojects\\build\\app\\outputs\\flutter-apk\\app-production-release.apk"
+#
+#     firebase_app_distribution(
+#       app: "1:712619438378:android:4c6ea73f1c9c86e3df6e53", # هتحط App ID من Firebase
+#       android_artifact_path: apk_path,
+#       release_notes: "New Production Release",
+#       testers: "mahamedmahmoud3880@gmail.com" # تقدر تحط Emails أو تسيبها فاضية
+#     )
+#   end
+# end

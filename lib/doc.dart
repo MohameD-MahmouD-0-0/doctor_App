@@ -1,3 +1,4 @@
+import 'package:doctor/ui/Home_Page/home_screen.dart';
 import 'package:doctor/ui/Login/LoginScreen.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:doctor/ui/onbording/onbording_screen.dart';
@@ -20,7 +21,8 @@ class DocApp extends StatelessWidget{
         initialRoute:OnBrdingCreen.routeName ,
         routes: {
           Loginscreen.routeName:(context)=> Loginscreen(),
-          OnBrdingCreen.routeName:(context)=> OnBrdingCreen()
+          OnBrdingCreen.routeName:(context)=> OnBrdingCreen(),
+          HomeScreen.routeName:(context)=> HomeScreen(),
         },
       ),
     );

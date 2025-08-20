@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../app_color.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
@@ -8,12 +7,15 @@ class CustomTextFormFiled extends StatelessWidget {
   Widget? SuffixIcon;
   bool ?isObsucre;
   TextEditingController controller;
+   Function(String) ?validate ;
+   Function(String) ?onChanged;
 
-  CustomTextFormFiled({required this.hintText, this.SuffixIcon,this.isObsucre,required this.controller});
+  CustomTextFormFiled({required this.hintText, this.SuffixIcon,this.isObsucre,required this.controller,required this.validate, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       controller: controller,
       decoration: InputDecoration(
         filled: true,
@@ -27,6 +29,12 @@ class CustomTextFormFiled extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.h),
           borderSide: BorderSide(color: AppColor.mainblue, width: 1.3),
         ),
+        errorBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.h),
+          borderSide: BorderSide(color: Colors.red, width: 1.3),),
+        focusedErrorBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.h),
+          borderSide: BorderSide(color: Colors.red, width: 1.3),),
         hintText: hintText,
         hintStyle: TextStyle(
           color: AppColor.grey,
@@ -36,6 +44,9 @@ class CustomTextFormFiled extends StatelessWidget {
         suffix: SuffixIcon,
       ),
       obscureText: isObsucre?? false ,
+      validator: (value){
+        return validate!(value!);
+      },
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:doctor/ui/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'doctor_blue_container.dart';
+
 class HomeScreen extends StatelessWidget{
   static const String routeName = 'HomeScreen';
   @override
@@ -16,6 +18,7 @@ class HomeScreen extends StatelessWidget{
         child:Column(
           children: [
             TapHomePage(),
+            DoctorBlurContainer(),
           ],
         ) ,
       )

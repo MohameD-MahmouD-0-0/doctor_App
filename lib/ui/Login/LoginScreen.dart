@@ -20,7 +20,7 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-   LoginViewModel viewModel =LoginViewModel(autheReposatioryContract: injectReposatiortContract());
+   LoginViewModel viewModel =LoginViewModel(autheReposatioryContract: injectAutheReposatiortContract());
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +90,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             viewModel.login();
+
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColor.mainblue,

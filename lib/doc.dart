@@ -18,7 +18,7 @@ class DocApp extends StatelessWidget{
         theme: ThemeData(
           primaryColor: AppColor.mainblue
         ),
-        initialRoute:OnBrdingCreen.routeName ,
+        initialRoute:HomeScreen.routeName ,
         routes: {
           Loginscreen.routeName:(context)=> Loginscreen(),
           OnBrdingCreen.routeName:(context)=> OnBrdingCreen(),

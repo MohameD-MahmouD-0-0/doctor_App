@@ -18,7 +18,7 @@ class LoginViewModel extends Cubit<LoginState> {
       either.fold((l){
         emit(LoginErrorState(errorMessage: l.errorMessage));
       }, (response){
-        emit(LoginSuccessState(loginResponse: response));
+        emit(LoginSuccessState());
       });
     }
   }

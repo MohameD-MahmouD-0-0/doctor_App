@@ -8,6 +8,5 @@ class LoginErrorState extends LoginState{
   LoginErrorState({required this.errorMessage});
 }
 class LoginSuccessState extends LoginState{
-   LoginResponse loginResponse;
-  LoginSuccessState({required this.loginResponse});
+  LoginSuccessState();
 }

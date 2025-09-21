@@ -4,9 +4,9 @@ import 'package:doctor/data/Failer.dart';
 import 'package:doctor/data/authe/Login_request.dart';
 import 'package:doctor/data/authe/Login_response.dart';
 import 'package:doctor/data/feature/api_constant.dart';
-import 'package:http/http.dart' as http;
-
+import '../../ui/shared_prefrence.dart';
 import '../home/specialization_response.dart';
+import 'package:http/http.dart' as http;
 
 class ApiManager {
   ApiManager._();
@@ -15,7 +15,7 @@ class ApiManager {
     _instance??=ApiManager._();
     return _instance!;
   }
-  Future<Either<Failer, LoginResponse>> Login(String email, String password) async {
+  Future<Either<Failer, LoginResponse>> login(String email, String password) async {
     try {
       var url = Uri.https(ApiConstant.ApiBaseUrl,ApiConstant.LoginUrl);
       var request = http.MultipartRequest('POST', url);
@@ -26,11 +26,11 @@ class ApiManager {
 
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
-      print(request.fields);
       var json = jsonDecode(response.body);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         var loginResponse = LoginResponse.fromJson(json);
+        await SharedPrefsService.setData(SharedPreferenceHelper.userToken, loginResponse.data?.token);
         return Right(loginResponse);
       } else {
         String errorMessage = json['message'] ?? 'Login failed';
@@ -43,10 +43,12 @@ class ApiManager {
 
   Future<Either<Failer, SpecializationResponse>> get_specialization() async {
     try {
+      final token = await SharedPrefsService.getString(SharedPreferenceHelper.userToken);
       var url = Uri.https(ApiConstant.ApiBaseUrl, ApiConstant.specializationUrl);
       var response = await http.get(url,headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzU4MTM0MzY2LCJleHAiOjE3NTgyMjA3NjYsIm5iZiI6MTc1ODEzNDM2NiwianRpIjoiUjJmb3lrRVJQMGVIVTNmNiIsInN1YiI6IjUxOTIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.4BQm5XPy0jiquxe7uojkul1apUOpX_5OJQSZpVx0kjc'});
+        'Authorization': 'Bearer $token'
+      });
       var json = jsonDecode(response.body);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {

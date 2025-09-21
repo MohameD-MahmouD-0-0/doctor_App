@@ -14,7 +14,7 @@ class AutheDataSourceImp implements AutheRemoteDataSource {
     String Email,
     String Password,
   ) async {
-    var eiher = await apiManager.Login(Email, Password);
+    var eiher = await apiManager.login(Email, Password);
     return eiher.fold(
       (l) {
         return Left(Failer(errorMessage: l.errorMessage));

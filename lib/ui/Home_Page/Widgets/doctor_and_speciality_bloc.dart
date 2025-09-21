@@ -20,6 +20,7 @@ class DoctorAndSpecialityBloc extends StatelessWidget{
         if (state is SpecializationLoadingState) {
           return CircularProgressIndicator();
         } else if (state is SpecializationError) {
+          print(state.errorMessage);
           return Column(children: [Text('Error')]);
         } else if (state is SpecializationSuccess) {
           return Expanded(

@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsService {
@@ -65,5 +66,13 @@ class SharedPrefsService {
   static Future<bool> containsKey(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.containsKey(key);
+  }
+  static Future<void> seuret_data(String value, String key) async {
+    final flutterSecureStorage = FlutterSecureStorage();
+    await flutterSecureStorage.write(key: key, value: value);
+  }
+  static Future<String?> get_seuret_data(String key) async {
+    final flutterSecureStorage = FlutterSecureStorage();
+    return await flutterSecureStorage.read(key: key);
   }
 }

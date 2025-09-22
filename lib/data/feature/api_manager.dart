@@ -30,7 +30,8 @@ class ApiManager {
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         var loginResponse = LoginResponse.fromJson(json);
-        await SharedPrefsService.setData(SharedPreferenceHelper.userToken, loginResponse.data?.token);
+        // await SharedPrefsService.setData(SharedPreferenceHelper.userToken, loginResponse.data?.token);
+        SharedPrefsService.seuret_data(loginResponse.data!.token!, SharedPreferenceHelper.userToken);
         return Right(loginResponse);
       } else {
         String errorMessage = json['message'] ?? 'Login failed';
@@ -43,11 +44,11 @@ class ApiManager {
 
   Future<Either<Failer, SpecializationResponse>> get_specialization() async {
     try {
-      final token = await SharedPrefsService.getString(SharedPreferenceHelper.userToken);
+      final secure_token = await SharedPrefsService.get_seuret_data(SharedPreferenceHelper.userToken);
       var url = Uri.https(ApiConstant.ApiBaseUrl, ApiConstant.specializationUrl);
       var response = await http.get(url,headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer $secure_token'
       });
       var json = jsonDecode(response.body);
 

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsList extends StatelessWidget {
-  // Doctors doctorsList ;
   List<Doctors> docList;
 
   DoctorsList({required this.docList});
@@ -29,28 +28,30 @@ class DoctorsList extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 16),
-                Column(
-                  children: [
-                    Text(
-                      docList[index].name!,
-                      style: TextStyle(
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w500,
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        docList[index].name!,
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    Text(
-                      docList[index].email!,
-                      style: TextStyle(
-                        color: AppColor.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      Text(
+                        docList[index].email!,
+                        style: TextStyle(
+                          color: AppColor.grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Text(
-                      docList[index].phone!,
-                      style: TextStyle(color: AppColor.grey, fontSize: 14.sp),
-                    ),
-                  ],
+                      Text(
+                        docList[index].phone!,
+                        style: TextStyle(color: AppColor.grey, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

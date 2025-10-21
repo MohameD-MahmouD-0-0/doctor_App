@@ -53,6 +53,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   dartz: ^0.10.1
   flutter_secure_storage: ^9.2.2
+  shimmer_animation: ^2.2.2
 
 dev_dependencies:
   flutter_test:

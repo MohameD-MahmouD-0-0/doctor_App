@@ -6,7 +6,7 @@ import '../app_color.dart';
 import 'doc_logo_and_name.dart';
 import 'doctor_image_and _text.dart';
 
-class OnBrdingCreen extends StatelessWidget {
+class OnBrdingScreen extends StatelessWidget {
   static const String routeName = 'OnBording';
 
   @override

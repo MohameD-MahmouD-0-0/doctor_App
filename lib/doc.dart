@@ -16,12 +16,12 @@ class DocApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Doc App',
         theme: ThemeData(primaryColor: AppColor.mainblue),
-        initialRoute: isLoggedIn == true
-            ? Loginscreen.routeName
+        initialRoute: isLoggedIn == false
+            ? OnBrdingScreen.routeName
             : HomeScreen.routeName,
         routes: {
           Loginscreen.routeName: (context) => Loginscreen(),
-          OnBrdingCreen.routeName: (context) => OnBrdingCreen(),
+          OnBrdingScreen.routeName: (context) => OnBrdingScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
         },
       ),

@@ -64,11 +64,11 @@ class _DoctorSpecialityListState extends State<DoctorSpecialityList> {
                           width: 60.0,
                           height: 60.0,
                           decoration: BoxDecoration(
-                            color: AppColor.mainblue,
+                            color: AppColor.grey.withAlpha(25),
                             borderRadius: BorderRadius.all(
                               Radius.circular(50.0),
                             ),
-                            border: Border.all(color: Colors.black, width: 3),
+                            // border: Border.all(color: Colors.black, width: 3),
                           ),
                           child: CircleAvatar(
                             radius: 30,

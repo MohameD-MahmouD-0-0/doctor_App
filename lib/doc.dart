@@ -1,6 +1,7 @@
 import 'package:doctor/main_devolpment.dart';
 import 'package:doctor/ui/Home_Page/home_screen.dart';
 import 'package:doctor/ui/Login/LoginScreen.dart';
+import 'package:doctor/ui/Notification/notification_page.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:doctor/ui/onbording/onbording_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class DocApp extends StatelessWidget {
           Loginscreen.routeName: (context) => Loginscreen(),
           OnBrdingScreen.routeName: (context) => OnBrdingScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
+          NotificationPage.routeName: (context) => NotificationPage(),
         },
       ),
     );

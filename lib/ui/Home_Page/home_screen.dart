@@ -1,3 +1,4 @@
+import 'package:doctor/ui/Home_Page/Search/doctor_search.dart';
 import 'package:doctor/ui/Home_Page/Widgets/speciality_bloc.dart';
 import 'package:doctor/ui/Home_Page/Widgets/doctor_bloc.dart';
 import 'package:doctor/ui/Home_Page/cuibt/specialization_view_model.dart';
@@ -64,14 +65,19 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 12 , left: 25),
-        child: Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color:AppColor.mainblue,
-            borderRadius: BorderRadius.circular(30.r),
+        child: InkWell(
+          onTap: (){
+            Navigator.of(context).pushNamed(DoctorSearchPage.routName);
+          },
+          child: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color:AppColor.mainblue,
+              borderRadius: BorderRadius.circular(30.r),
+            ),
+            child:  Image.asset('assets/images/search-normal.png',),
           ),
-          child:  Image.asset('assets/images/search-normal.png',),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

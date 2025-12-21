@@ -18,11 +18,14 @@ class DoctorResponseError extends SpecializationState {
 }
 abstract class DoctorState {}
 class DoctorLoading extends DoctorState {}
+
 class DoctorError extends DoctorState {
   final String errorMessage;
   DoctorError({required this.errorMessage});
 }
+
 class DoctorSuccess extends DoctorState {
   final List<Doctors> doctorList;
   DoctorSuccess({required this.doctorList});
 }
+class DoctorNotFound extends DoctorState {}

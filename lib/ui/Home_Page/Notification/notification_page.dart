@@ -10,6 +10,34 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AppColor.grey.withAlpha(50),
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white.withAlpha(200),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Icon(
+                  size: 20,
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ),
+
         title: Text(
           'Notification',
           style: TextStyle(fontWeight: FontWeight.w500),
@@ -93,9 +121,9 @@ class NotificationPage extends StatelessWidget {
             SizedBox(height: 10.h),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Text('Yesterday',style: TextStyle(color: AppColor.grey),),
+              child: Text('Yesterday', style: TextStyle(color: AppColor.grey)),
             ),
-            SizedBox(height:  30.h),
+            SizedBox(height: 30.h),
             NotificationItem(
               icon: Image.asset('assets/images/calendar-remove.png'),
               Notification_Title: 'Appointment Cancelled',

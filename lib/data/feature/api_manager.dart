@@ -4,7 +4,9 @@ import 'package:doctor/data/Failer.dart';
 import 'package:doctor/data/authe/Login_request.dart';
 import 'package:doctor/data/authe/Login_response.dart';
 import 'package:doctor/data/feature/api_constant.dart';
+import 'package:doctor/data/home/oppintment_response/appointmentResponse.dart';
 import '../../ui/shared_prefrence.dart';
+import '../home/oppintment_response/appointment_request.dart';
 import '../home/specialization_response.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,7 +32,6 @@ class ApiManager {
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         var loginResponse = LoginResponse.fromJson(json);
-        // await SharedPrefsService.setData(SharedPreferenceHelper.userToken, loginResponse.data?.token);
         SharedPrefsService.seuret_data(loginResponse.data!.token!, SharedPreferenceHelper.userToken);
         return Right(loginResponse);
       } else {
@@ -57,6 +58,40 @@ class ApiManager {
         return Right(specializationResponse);
       } else {
         String errorMessage = json['message'] ?? 'Specialization failed';
+        return Left(Failer(errorMessage: errorMessage));
+
+      }
+    } catch (e) {
+      return Left(Failer(errorMessage: e.toString()));
+    }
+  }
+
+
+  Future<Either<Failer, AppointmentResponse>> pay_doctor_appointment(int DoctorId , String appointmentTime) async {
+    try {
+      final secure_token = await SharedPrefsService.get_seuret_data(SharedPreferenceHelper.userToken);
+
+      var headers = {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $secure_token'
+      };
+      var url = Uri.https(ApiConstant.ApiBaseUrl,ApiConstant.appointmentPayUrl);
+      var request = http.MultipartRequest('POST', url);
+      var appointmentRequest = AppointmentRequest(doctorId: DoctorId,startTime: appointmentTime);
+      request.headers.addAll(headers);
+      request.fields.addAll(
+          appointmentRequest.toJson().map((key, value) => MapEntry(key, value.toString()))
+      );
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      var json = jsonDecode(response.body);
+      var AppointmentRsponse = AppointmentResponse.fromJson(json);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(AppointmentRsponse);
+
+      } else {
+        String errorMessage = json['message'] ?? 'Failed Appointment';
         return Left(Failer(errorMessage: errorMessage));
       }
     } catch (e) {

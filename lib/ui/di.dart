@@ -1,4 +1,7 @@
 import 'package:doctor/data/feature/api_manager.dart';
+import 'package:doctor/ui/Home_Page/appointment_data_source.dart';
+import 'package:doctor/ui/Home_Page/appointment_data_source_imp.dart';
+import 'package:doctor/ui/Home_Page/appointment_reposatiory_imp.dart';
 import 'package:doctor/ui/Home_Page/specialization_data_source.dart';
 import 'package:doctor/ui/Home_Page/specialization_data_source_imp.dart';
 import 'package:doctor/ui/Home_Page/specialization_reposatiory_contract.dart';
@@ -7,6 +10,7 @@ import 'package:doctor/ui/Login/authe_datasource.dart';
 import 'package:doctor/ui/Login/authe_datasource_imp.dart';
 import 'package:doctor/ui/Login/authe_reposatiory_contract.dart';
 
+import 'Home_Page/appointment_reposatiory_contrat.dart';
 import 'Login/authe_reposatiory_imp.dart';
 
 AutheReposatioryContract injectAutheReposatiortContract() {
@@ -27,3 +31,14 @@ SpecializationReposaitoryContract injectSpecializationReposatiortContract() {
 SpecializationDataSource injectSpecializationRemoteDataSource() {
   return SpecializationDataSourceImp(apiManager: ApiManager.getinstance());
 }
+
+AppointmentDataSource injectAppointmentRemoteDataSource() {
+  return AppointmentDataSourceImp(apiManager: ApiManager.getinstance());
+}
+
+AppointmentReposatioryContrat injectAppointmentReposatiortContract() {
+  return AppointmentReposatioryImp(
+    appointmentDataSource: injectAppointmentRemoteDataSource(),
+  );
+}
+

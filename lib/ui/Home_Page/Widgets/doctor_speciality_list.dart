@@ -68,7 +68,6 @@ class _DoctorSpecialityListState extends State<DoctorSpecialityList> {
                             borderRadius: BorderRadius.all(
                               Radius.circular(50.0),
                             ),
-                            // border: Border.all(color: Colors.black, width: 3),
                           ),
                           child: CircleAvatar(
                             radius: 30,

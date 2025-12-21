@@ -18,7 +18,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    viewModel = BlocProvider.of<LoginViewModel>(context); // الحصول على ViewModel من Provider
+    viewModel = BlocProvider.of<LoginViewModel>(context);
     checkPasswordController(viewModel.PasswordController.text);
   }
 

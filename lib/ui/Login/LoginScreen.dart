@@ -90,7 +90,6 @@ class _LoginscreenState extends State<Loginscreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             viewModel.login();
-
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColor.mainblue,

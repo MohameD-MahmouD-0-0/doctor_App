@@ -2,7 +2,6 @@ import 'package:doctor/ui/Login/cuibt/Login_state.dart';
 import 'package:doctor/ui/shared_prefrence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../data/feature/api_constant.dart';
 import '../authe_reposatiory_contract.dart';
 
@@ -20,7 +19,7 @@ class LoginViewModel extends Cubit<LoginState> {
       either.fold((l){
         emit(LoginErrorState(errorMessage: l.errorMessage));
       }, (response) async {
-        await SharedPrefsService.setData(SharedPreferenceHelper.userToken!, response.data?.token);
+        await SharedPrefsService.setData(SharedPreferenceHelper.userToken, response.data?.token);
         emit(LoginSuccessState());
       });
     }

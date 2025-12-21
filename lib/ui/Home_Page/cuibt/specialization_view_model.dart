@@ -32,33 +32,39 @@ class DoctorCubit extends Cubit<DoctorState> {
   bool isDataLoaded = false;
   int selectedIndex = 0;
 
-  DoctorCubit({required this.specializationRepository}) : super(DoctorLoading());
+  DoctorCubit({required this.specializationRepository})
+    : super(DoctorLoading());
 
   void loadAllData() async {
     emit(DoctorLoading());
     final either = await specializationRepository.get_specialization();
 
-    either.fold(
-          (l) => emit(DoctorError(errorMessage: l.errorMessage)),
-          (response) {
-        allSpecializations = response.data ?? [];
-        isDataLoaded = true;
+    either.fold((l) => emit(DoctorError(errorMessage: l.errorMessage)), (
+      response,
+    ) {
+      allSpecializations = response.data ?? [];
+      isDataLoaded = true;
 
-        final doctors = allSpecializations!.first.doctors ?? [];
-        emit(
-          doctors.isEmpty
-              ? DoctorError(errorMessage: "No doctors found")
-              : DoctorSuccess(doctorList: doctors),
-        );
-      },
-    );
+      final doctors = allSpecializations!.first.doctors ?? [];
+      List<Doctors> allDoctors = [];
+      for (var specialization in allSpecializations!) {
+        if (specialization.doctors != null) {
+          allDoctors.addAll(specialization.doctors!);
+        }
+      }
+      emit(
+        doctors.isEmpty
+            ? DoctorError(errorMessage: "No doctors found")
+            : DoctorSuccess(doctorList: doctors),
+      );
+    });
   }
 
   void getDoctorsBySpecializationId(int specializationId) async {
-
-
-    final specialization = allSpecializations!
-        .firstWhere((s) => s.id == specializationId, orElse: () => Data());
+    final specialization = allSpecializations!.firstWhere(
+      (s) => s.id == specializationId,
+      orElse: () => Data(),
+    );
 
     final doctors = specialization.doctors ?? [];
     emit(
@@ -66,5 +72,49 @@ class DoctorCubit extends Cubit<DoctorState> {
           ? DoctorError(errorMessage: "No doctors found")
           : DoctorSuccess(doctorList: doctors),
     );
+  }
+
+  void getAllDoctors() async {
+    emit(DoctorLoading());
+    final either = await specializationRepository.get_specialization();
+
+    either.fold((l) => emit(DoctorError(errorMessage: l.errorMessage)), (
+      response,
+    ) {
+      allSpecializations = response.data ?? [];
+      isDataLoaded = true;
+      List<Doctors> allDoctors = [];
+      for (var specialization in allSpecializations!) {
+        if (specialization.doctors != null) {
+          allDoctors.addAll(specialization.doctors!);
+        }
+        emit(
+          allDoctors.isEmpty
+              ? DoctorError(errorMessage: "No doctors found")
+              : DoctorSuccess(doctorList: allDoctors),
+        );
+      }
+    });
+  }
+
+  void getDoctorByName(String doctorName) {
+    List<Doctors> allDoctors = [];
+    List<Doctors> filterdDoctors = [];
+
+    for (var specialization in allSpecializations!) {
+      if (specialization.doctors != null) {
+        allDoctors.addAll(specialization.doctors!);
+      }
+    }
+    filterdDoctors = allDoctors
+        .where((doctor) =>
+        doctor.name!.toLowerCase().contains(doctorName.toLowerCase().trim()))
+        .toList();
+
+    if (filterdDoctors.isEmpty) {
+      emit(DoctorNotFound());
+    } else if(filterdDoctors.isNotEmpty){
+      emit(DoctorSuccess(doctorList: filterdDoctors));
+    }
   }
 }

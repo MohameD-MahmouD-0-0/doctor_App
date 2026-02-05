@@ -1,6 +1,6 @@
-import 'package:doctor/ui/Home_Page/home_screen.dart';
-import 'package:doctor/ui/Login/cuibt/Login_state.dart';
-import 'package:doctor/ui/Login/cuibt/login_view_model.dart';
+import 'package:doctor/ui/Home_Page/root_screen.dart';
+import 'package:doctor/logic/cuibt/Login_state.dart';
+import 'package:doctor/logic/cuibt/login_view_model.dart';
 import 'package:doctor/ui/Login/email_and_password.dart';
 import 'package:doctor/ui/Login/terms_and_conditins_text.dart';
 import 'package:doctor/ui/app_color.dart';
@@ -34,7 +34,7 @@ class _LoginscreenState extends State<Loginscreen> {
               child: BlocConsumer<LoginViewModel, LoginState>(
                 listener: (context, state) {
                   if (state is LoginSuccessState) {
-                    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+                    Navigator.of(context).pushReplacementNamed(RootScreen.routeName);
                   }
                   if (state is LoginErrorState) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -90,7 +90,6 @@ class _LoginscreenState extends State<Loginscreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             viewModel.login();
-
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColor.mainblue,

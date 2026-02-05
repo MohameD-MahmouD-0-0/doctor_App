@@ -18,8 +18,9 @@ class CustomTextFormFiled extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 15.h),
         filled: true,
-        fillColor: AppColor.moreLightGray,
+        fillColor: AppColor.grey.withAlpha(20),
         isDense: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.h),
@@ -44,7 +45,8 @@ class CustomTextFormFiled extends StatelessWidget {
         suffix: SuffixIcon,
       ),
       obscureText: isObsucre?? false ,
-      validator: (value){
+      validator:
+          (value){
         return validate!(value!);
       },
     );

@@ -1,4 +1,4 @@
-import 'package:doctor/data/home/specialization_response.dart';
+import 'package:doctor/data/home/specialization/specialization_response.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

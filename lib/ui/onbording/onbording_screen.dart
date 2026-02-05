@@ -8,6 +8,8 @@ import 'doctor_image_and _text.dart';
 
 class OnBrdingScreen extends StatelessWidget {
   static const String routeName = 'OnBording';
+  const OnBrdingScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class OnBrdingScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.mainblue,
                           foregroundColor: Colors.white,
+                          elevation: 10,
                           padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.r),

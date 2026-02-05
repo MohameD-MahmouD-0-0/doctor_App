@@ -1,9 +1,8 @@
-import 'package:doctor/ui/Notification/notification_item.dart';
-import 'package:doctor/ui/Notification/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../app_color.dart';
+import '../Notification/notification_page.dart';
 
 class TapHomePage extends StatelessWidget {
   @override

@@ -6,7 +6,8 @@ import '../app_color.dart';
 class TermsAndConditinsText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RichText(
+    return
+      RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
         children: [

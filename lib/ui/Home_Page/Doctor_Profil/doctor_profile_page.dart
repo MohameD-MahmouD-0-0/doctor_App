@@ -1,9 +1,9 @@
-import 'package:doctor/data/home/specialization_response.dart';
-import 'package:doctor/ui/Home_Page/Book_Appointment/home_book_Appointment.dart';
+import 'package:doctor/data/home/specialization/specialization_response.dart';
 import 'package:doctor/ui/Home_Page/Doctor_Profil/doctor_tap_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../app_color.dart';
+import '../Book_Appointment/Third_Check/home_book_Appointment.dart';
 import 'doctor_review.dart';
 
 class DoctoProfile extends StatelessWidget {
@@ -71,7 +71,7 @@ class DoctoProfile extends StatelessWidget {
           child: Column(
             children: [
               // Doctor Header
-              DoctorTapInfo(doctors: args),
+              // DoctorTapInfo(doctors: args),
               SizedBox(height: 20.h),
               TabBar(
                 labelColor: Colors.blue,
@@ -188,13 +188,11 @@ class DoctoProfile extends StatelessWidget {
                                 stars: 5,
                                 time: 'Today',
                               ),
-
                             ],
                           ),
                         ),
                       ),
                     )
-
                   ],
                 ),
               ),

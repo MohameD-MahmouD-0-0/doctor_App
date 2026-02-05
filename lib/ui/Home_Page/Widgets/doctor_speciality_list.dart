@@ -1,11 +1,10 @@
-import 'package:doctor/data/home/specialization_response.dart';
+import 'package:doctor/data/home/specialization/specialization_response.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:doctor/ui/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../cuibt/specialization_view_model.dart';
+import '../../../logic/cuibt/specialization_view_model.dart';
 
 class DoctorSpecialityList extends StatefulWidget {
   final List<Data> specialization_response;

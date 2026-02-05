@@ -1,6 +1,5 @@
-import 'package:doctor/ui/Login/cuibt/login_view_model.dart';
+import 'package:doctor/logic/cuibt/login_view_model.dart';
 import 'package:doctor/ui/Login/password_validation.dart';
-import 'package:doctor/ui/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,11 +17,10 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    viewModel = BlocProvider.of<LoginViewModel>(context);
+    viewModel = context.read<LoginViewModel>();
     checkPasswordController(viewModel.PasswordController.text);
   }
 
-  // late TextEditingController tempPassword ;
   bool hasLowerCased = false;
   bool hasUpperCased = false;
   bool hasNumber = false;
@@ -83,7 +81,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
           },
         ),
         SizedBox(height:30 ,),
-        PasswordValidation(
+          PasswordValidation(
           hasLowerCased: hasLowerCased,
           hasMinLength: hasMinLength,
           hasNumber: hasNumber,
@@ -93,5 +91,4 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
       ],
     );
   }
-
 }

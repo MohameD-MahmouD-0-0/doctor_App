@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../data/home/specialization_response.dart';
+import '../../../data/home/specialization/specialization_response.dart';
 
 class DoctorTapInfo extends StatelessWidget {
   Doctors doctors;

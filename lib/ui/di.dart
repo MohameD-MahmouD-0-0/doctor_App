@@ -1,17 +1,20 @@
 import 'package:doctor/data/feature/api_manager.dart';
-import 'package:doctor/ui/Home_Page/appointment_data_source.dart';
-import 'package:doctor/ui/Home_Page/appointment_data_source_imp.dart';
-import 'package:doctor/ui/Home_Page/appointment_reposatiory_imp.dart';
-import 'package:doctor/ui/Home_Page/specialization_data_source.dart';
-import 'package:doctor/ui/Home_Page/specialization_data_source_imp.dart';
-import 'package:doctor/ui/Home_Page/specialization_reposatiory_contract.dart';
-import 'package:doctor/ui/Home_Page/specialization_reposatiory_imp.dart';
-import 'package:doctor/ui/Login/authe_datasource.dart';
-import 'package:doctor/ui/Login/authe_datasource_imp.dart';
-import 'package:doctor/ui/Login/authe_reposatiory_contract.dart';
-
-import 'Home_Page/appointment_reposatiory_contrat.dart';
-import 'Login/authe_reposatiory_imp.dart';
+import 'package:doctor/logic/Home/Data_source/appointment_data_source.dart';
+import 'package:doctor/logic/Home/Data_source/appointment_data_source_imp.dart';
+import 'package:doctor/logic/Home/Reposatiory/appointment_reposatiory_imp.dart';
+import 'package:doctor/logic/Home/Data_source/specialization_data_source.dart';
+import 'package:doctor/logic/Home/Data_source/authe_datasource.dart';
+import 'package:doctor/logic/Home/Data_source/authe_datasource_imp.dart';
+import 'package:doctor/logic/Home/Reposatiory/authe_reposatiory_contract.dart';
+import 'package:doctor/logic/Home/Reposatiory/register_reposatiory_contract.dart';
+import '../logic/Home/Data_source/register_data_source.dart';
+import '../logic/Home/Data_source/register_data_source_imp.dart';
+import '../logic/Home/Data_source/specialization_data_source_imp.dart';
+import '../logic/Home/Reposatiory/appointment_reposatiory_contrat.dart';
+import '../logic/Home/Reposatiory/register_reposatiory_imp.dart';
+import '../logic/Home/Reposatiory/specialization_reposatiory_contract.dart';
+import '../logic/Home/Reposatiory/specialization_reposatiory_imp.dart';
+import '../logic/Home/Reposatiory/authe_reposatiory_imp.dart';
 
 AutheReposatioryContract injectAutheReposatiortContract() {
   return AutheReposatioryImp(
@@ -42,3 +45,22 @@ AppointmentReposatioryContrat injectAppointmentReposatiortContract() {
   );
 }
 
+MyAppointmentDataSource injectMyAppointmentRemoteDataSource() {
+  return MyAppointmentDataSourceImp(apiManager: ApiManager.getinstance());
+}
+
+MyAppointmentReposatioryContrat injectMyAppointmentReposatiortContract() {
+  return MyAppointmentReposatioryImp(
+    MyappointmentDataSource: injectMyAppointmentRemoteDataSource(),
+  );
+}
+
+RegisterDataSource injectRegisterRemoteDataSource() {
+  return RegisterDataSourceImp(apiManager: ApiManager.getinstance());
+}
+
+RegisterReposatioryContract injectRegisterReposatiortContract() {
+  return RegisterReposatioryImp(
+    registerDataSource: injectRegisterRemoteDataSource(),
+  );
+}

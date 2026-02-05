@@ -1,13 +1,13 @@
 import 'package:doctor/ui/Home_Page/Search/doctor_search_item.dart';
-import 'package:doctor/ui/Home_Page/cuibt/specialization_state.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:doctor/ui/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../logic/cuibt/specialization_state.dart';
+import '../../../logic/cuibt/specialization_view_model.dart';
 import '../Widgets/doctor_list_shimmer.dart';
-import '../cuibt/specialization_view_model.dart';
 
 class DoctorSearchPage extends StatefulWidget {
   static const String routName = 'search_doctor';

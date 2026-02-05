@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../app_color.dart';
@@ -20,6 +21,8 @@ class AlreadyHaveAccount extends StatelessWidget {
                 color: AppColor.mainblue,
                 fontWeight: FontWeight.w500,
               ),
+              recognizer: TapGestureRecognizer(
+              )
             ),
           ],
         ),

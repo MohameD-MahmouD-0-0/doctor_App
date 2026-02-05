@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:doctor/ui/app_color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorSpecialPage extends StatelessWidget {
+class DoctorSpecialityPage extends StatelessWidget {
   static const String routeName = 'DoctorSpecialityPage';
 
   final List<Map<String, String>> specialities = [

@@ -56,7 +56,7 @@ class ReviewItem extends StatelessWidget {
                 SizedBox(height: 6.h),
                 Row(
                   children: List.generate(
-                    5, (index) => Icon(
+                    stars, (index) => Icon(
                       Icons.star,
                       color: index < stars ? Colors.amber : Colors.grey[300],
                       size: 18.sp,

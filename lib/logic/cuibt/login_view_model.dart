@@ -1,0 +1,27 @@
+import 'package:doctor/logic/cuibt/Login_state.dart';
+import 'package:doctor/ui/shared_prefrence.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/feature/api_constant.dart';
+import '../Home/Reposatiory/authe_reposatiory_contract.dart';
+
+class LoginViewModel extends Cubit<LoginState> {
+  AutheReposatioryContract autheReposatioryContract;
+   LoginViewModel({required this.autheReposatioryContract}) : super(LoginInitialState());
+  final formKey = GlobalKey<FormState>();
+  bool isObsucred = true;
+  TextEditingController EmailController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+  void login() async {
+    if (formKey.currentState!.validate()) {
+      emit(LoginLoadingState());
+      var either = await autheReposatioryContract.login(EmailController.text, PasswordController.text);
+      either.fold((l){
+        emit(LoginErrorState(errorMessage: l.errorMessage));
+      }, (response) async {
+        await SharedPrefsService.setData(SharedPreferenceHelper.userToken, response.data?.token);
+        emit(LoginSuccessState());
+      });
+    }
+  }
+}

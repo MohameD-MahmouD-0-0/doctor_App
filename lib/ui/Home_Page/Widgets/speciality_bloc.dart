@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../logic/cuibt/specialization_state.dart';
+import '../../../logic/cuibt/specialization_view_model.dart';
 import '../../di.dart';
-import '../cuibt/specialization_state.dart';
-import '../cuibt/specialization_view_model.dart';
 import 'doctor_speciality_list.dart';
 import 'doctor_speciality_shimmer.dart';
 

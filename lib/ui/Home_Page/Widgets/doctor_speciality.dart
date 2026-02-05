@@ -19,7 +19,7 @@ class DoctorSpeciality extends StatelessWidget {
         ),
         InkWell(
           onTap: (){
-            Navigator.of(context).pushNamed(DoctorSpecialPage.routeName);
+            Navigator.of(context).pushNamed(DoctorSpecialityPage.routeName);
           },
           child: Text(
             'See all',
